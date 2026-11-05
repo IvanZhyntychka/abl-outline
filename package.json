@@ -1,0 +1,386 @@
+{
+	"name": "abl-outline",
+	"displayName": "ABL Outline",
+	"description": "Outline, highlighting, and go-to-definition for OpenEdge ABL includes and classes.",
+	"version": "1.0.0",
+	"publisher": "local",
+	"engines": {
+		"vscode": "^1.70.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"activationEvents": [
+		"onLanguage:abl"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "abl",
+				"aliases": [
+					"ABL",
+					"OpenEdge ABL",
+					"Progress"
+				],
+				"extensions": [
+					".cls",
+					".p",
+					".w",
+					".i",
+					".pi"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "abl",
+				"scopeName": "source.abl",
+				"path": "./syntaxes/abl.tmLanguage.json"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "editor.action.revealDefinition",
+				"key": "ctrl+shift+r",
+				"when": "editorTextFocus && editorLangId == abl"
+			},
+			{
+				"command": "editor.action.goToReferences",
+				"key": "alt+f7",
+				"when": "editorTextFocus && editorLangId == abl"
+			},
+			{
+				"command": "editor.action.goToImplementation",
+				"key": "ctrl+alt+b",
+				"when": "editorTextFocus && editorLangId == abl"
+			}
+		],
+		"semanticTokenTypes": [
+			{
+				"id": "table",
+				"description": "ABL temp-table or database table"
+			},
+			{
+				"id": "field",
+				"description": "ABL field"
+			},
+			{
+				"id": "dataset",
+				"description": "ABL dataset"
+			},
+			{
+				"id": "buffer",
+				"description": "ABL buffer"
+			}
+		],
+		"semanticTokenScopes": [
+			{
+				"selector": "table",
+				"scopes": [
+					"entity.name.type.class.abl"
+				]
+			},
+			{
+				"selector": "buffer",
+				"scopes": [
+					"entity.name.type.class.abl"
+				]
+			},
+			{
+				"selector": "dataset",
+				"scopes": [
+					"entity.name.type.abl"
+				]
+			},
+			{
+				"selector": "field",
+				"scopes": [
+					"variable.other.property.abl"
+				]
+			}
+		],
+		"configurationDefaults": {
+			"[abl]": {
+				"editor.semanticHighlighting.enabled": true
+			},
+			"editor.semanticTokenColorCustomizations": {
+				"rules": {
+					"class:abl": {
+						"foreground": "#A9B7C6",
+						"fontStyle": "bold"
+					},
+					"method:abl": "#FFC66D",
+					"function:abl": "#FFC66D",
+					"property:abl": {
+						"foreground": "#9876AA",
+						"fontStyle": "italic"
+					},
+					"field:abl": "#9876AA",
+					"parameter:abl": "#A9B7C6",
+					"variable:abl": "#A9B7C6",
+					"table:abl": "#6897BB",
+					"buffer:abl": {
+						"foreground": "#6897BB",
+						"fontStyle": "italic"
+					},
+					"dataset:abl": "#BBB529"
+				},
+				"[Default Light+]": {
+					"rules": {
+						"class:abl": {
+							"foreground": "#000000",
+							"fontStyle": "bold"
+						},
+						"method:abl": "#000000",
+						"function:abl": "#000000",
+						"property:abl": {
+							"foreground": "#660E7A",
+							"fontStyle": "italic"
+						},
+						"field:abl": "#660E7A",
+						"parameter:abl": "#000000",
+						"variable:abl": "#000000",
+						"table:abl": "#000080",
+						"buffer:abl": {
+							"foreground": "#660E7A",
+							"fontStyle": "italic"
+						},
+						"dataset:abl": "#808000"
+					}
+				},
+				"[Default Light Modern]": {
+					"rules": {
+						"class:abl": {
+							"foreground": "#000000",
+							"fontStyle": "bold"
+						},
+						"method:abl": "#000000",
+						"function:abl": "#000000",
+						"property:abl": {
+							"foreground": "#660E7A",
+							"fontStyle": "italic"
+						},
+						"field:abl": "#660E7A",
+						"parameter:abl": "#000000",
+						"variable:abl": "#000000",
+						"table:abl": "#000080",
+						"buffer:abl": {
+							"foreground": "#660E7A",
+							"fontStyle": "italic"
+						},
+						"dataset:abl": "#808000"
+					}
+				}
+			},
+			"editor.tokenColorCustomizations": {
+				"textMateRules": [
+					{
+						"scope": "keyword.control.abl",
+						"settings": {
+							"foreground": "#CC7832",
+							"fontStyle": "bold"
+						}
+					},
+					{
+						"scope": "keyword.control.preprocessor.abl",
+						"settings": {
+							"foreground": "#BBB529"
+						}
+					},
+					{
+						"scope": "comment.block.abl",
+						"settings": {
+							"foreground": "#629755",
+							"fontStyle": "italic"
+						}
+					},
+					{
+						"scope": "comment.line.double-slash.abl",
+						"settings": {
+							"foreground": "#808080",
+							"fontStyle": "italic"
+						}
+					},
+					{
+						"scope": "string.quoted.double.abl",
+						"settings": {
+							"foreground": "#6A8759"
+						}
+					},
+					{
+						"scope": "string.quoted.single.abl",
+						"settings": {
+							"foreground": "#6A8759"
+						}
+					},
+					{
+						"scope": "constant.character.escape.abl",
+						"settings": {
+							"foreground": "#CC7832"
+						}
+					},
+					{
+						"scope": "constant.numeric.abl",
+						"settings": {
+							"foreground": "#6897BB"
+						}
+					},
+					{
+						"scope": "constant.language.abl",
+						"settings": {
+							"foreground": "#6897BB"
+						}
+					},
+					{
+						"scope": "entity.name.tag.include.abl",
+						"settings": {
+							"foreground": "#6897BB"
+						}
+					}
+				],
+				"[Default Light+]": {
+					"textMateRules": [
+						{
+							"scope": "keyword.control.abl",
+							"settings": {
+								"foreground": "#000080",
+								"fontStyle": "bold"
+							}
+						},
+						{
+							"scope": "keyword.control.preprocessor.abl",
+							"settings": {
+								"foreground": "#808000"
+							}
+						},
+						{
+							"scope": "comment.block.abl",
+							"settings": {
+								"foreground": "#808080",
+								"fontStyle": "italic"
+							}
+						},
+						{
+							"scope": "comment.line.double-slash.abl",
+							"settings": {
+								"foreground": "#808080",
+								"fontStyle": "italic"
+							}
+						},
+						{
+							"scope": "string.quoted.double.abl",
+							"settings": {
+								"foreground": "#008000",
+								"fontStyle": "bold"
+							}
+						},
+						{
+							"scope": "string.quoted.single.abl",
+							"settings": {
+								"foreground": "#008000",
+								"fontStyle": "bold"
+							}
+						},
+						{
+							"scope": "constant.character.escape.abl",
+							"settings": {
+								"foreground": "#000080",
+								"fontStyle": "bold"
+							}
+						},
+						{
+							"scope": "constant.numeric.abl",
+							"settings": {
+								"foreground": "#0000FF"
+							}
+						},
+						{
+							"scope": "constant.language.abl",
+							"settings": {
+								"foreground": "#0000FF"
+							}
+						},
+						{
+							"scope": "entity.name.tag.include.abl",
+							"settings": {
+								"foreground": "#008000"
+							}
+						}
+					]
+				},
+				"[Default Light Modern]": {
+					"textMateRules": [
+						{
+							"scope": "keyword.control.abl",
+							"settings": {
+								"foreground": "#000080",
+								"fontStyle": "bold"
+							}
+						},
+						{
+							"scope": "keyword.control.preprocessor.abl",
+							"settings": {
+								"foreground": "#808000"
+							}
+						},
+						{
+							"scope": "comment.block.abl",
+							"settings": {
+								"foreground": "#808080",
+								"fontStyle": "italic"
+							}
+						},
+						{
+							"scope": "comment.line.double-slash.abl",
+							"settings": {
+								"foreground": "#808080",
+								"fontStyle": "italic"
+							}
+						},
+						{
+							"scope": "string.quoted.double.abl",
+							"settings": {
+								"foreground": "#008000",
+								"fontStyle": "bold"
+							}
+						},
+						{
+							"scope": "string.quoted.single.abl",
+							"settings": {
+								"foreground": "#008000",
+								"fontStyle": "bold"
+							}
+						},
+						{
+							"scope": "constant.character.escape.abl",
+							"settings": {
+								"foreground": "#000080",
+								"fontStyle": "bold"
+							}
+						},
+						{
+							"scope": "constant.numeric.abl",
+							"settings": {
+								"foreground": "#0000FF"
+							}
+						},
+						{
+							"scope": "constant.language.abl",
+							"settings": {
+								"foreground": "#0000FF"
+							}
+						},
+						{
+							"scope": "entity.name.tag.include.abl",
+							"settings": {
+								"foreground": "#008000"
+							}
+						}
+					]
+				}
+			}
+		}
+	}
+}

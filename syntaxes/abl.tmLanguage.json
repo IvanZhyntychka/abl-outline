@@ -1,0 +1,62 @@
+{
+  "scopeName": "source.abl",
+  "name": "ABL",
+  "patterns": [
+    { "include": "#comment-block" },
+    { "include": "#comment-line" },
+    { "include": "#string-double" },
+    { "include": "#string-single" },
+    { "include": "#preprocessor" },
+    { "include": "#include" },
+    { "include": "#number" },
+    { "include": "#unknown" },
+    { "include": "#keyword" }
+  ],
+  "repository": {
+    "comment-block": {
+      "name": "comment.block.abl",
+      "begin": "/\\*",
+      "end": "\\*/"
+    },
+    "comment-line": {
+      "name": "comment.line.double-slash.abl",
+      "match": "//.*$"
+    },
+    "string-double": {
+      "name": "string.quoted.double.abl",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        { "name": "constant.character.escape.abl", "match": "\"\"" }
+      ]
+    },
+    "string-single": {
+      "name": "string.quoted.single.abl",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        { "name": "constant.character.escape.abl", "match": "''" }
+      ]
+    },
+    "preprocessor": {
+      "name": "keyword.control.preprocessor.abl",
+      "match": "(?i)(?:\\{&[A-Za-z0-9-]+\\}|&[A-Za-z0-9-]+)"
+    },
+    "include": {
+      "name": "entity.name.tag.include.abl",
+      "match": "\\{(?![&\\d])[^}\\s]+"
+    },
+    "number": {
+      "name": "constant.numeric.abl",
+      "match": "(?<![A-Za-z0-9_])\\d+(?:\\.\\d+)?(?![A-Za-z0-9_])"
+    },
+    "unknown": {
+      "name": "constant.language.abl",
+      "match": "(?<![A-Za-z0-9_])\\?(?![A-Za-z0-9_])"
+    },
+    "keyword": {
+      "name": "keyword.control.abl",
+      "match": "(?i)(?<![A-Za-z0-9_$-])(?:abstract|and|as|available|buffer|by-reference|by|can-find|case|catch|character|class|constructor|create|data-source|dataset-handle|dataset|date|datetime-tz|datetime|decimal|define|def|delete|destructor|do|each|else|end|enum|error|exclusive-lock|extent|field|finally|find|first|for|forward|frame|from|function|get|handle|if|implements|in|index|inherits|initial|input-output|input|int64|integer|interface|last|leave|like|logical|longchar|memptr|method|new|next|no-error|no-lock|no-undo|no|not|of|on|or|otherwise|output|override|parameter|persistent|primary|private|procedure|property|protected|public|query|quit|raw|recid|reference-only|repeat|return|returns|routine-level|rowid|run|serialize-name|set|share-lock|static|stop|stream|super|table-handle|table|temp-table|then|this-object|this-procedure|throw|to|transaction|true|false|undo|unique|using|variable|void|where|while|work-table|yes|unknown)(?![A-Za-z0-9_$-])"
+    }
+  }
+}

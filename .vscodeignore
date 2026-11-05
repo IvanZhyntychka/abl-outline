@@ -1,0 +1,8 @@
+.git/**
+.gitignore
+.vscodeignore
+.vsixmanifest
+**/*.vsix
+*.log
+.DS_Store
+node_modules/**
