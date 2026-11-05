@@ -40,6 +40,48 @@
 				"path": "./syntaxes/abl.tmLanguage.json"
 			}
 		],
+		"views": {
+			"explorer": [
+				{
+					"id": "abl.outline",
+					"name": "ABL Outline",
+					"visibility": "visible"
+				}
+			]
+		},
+		"viewsWelcome": [
+			{
+				"view": "abl.outline",
+				"contents": "Open an ABL file to list its symbols.",
+				"when": "!ablOutline.hasDocument"
+			}
+		],
+		"commands": [
+			{
+				"command": "abl.outline.reveal",
+				"title": "Reveal ABL Symbol"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "abl.outline.reveal",
+					"when": "false"
+				}
+			]
+		},
+		"colors": [
+			{
+				"id": "abl.privateMethod",
+				"description": "Dim icon color for private methods in the ABL outline.",
+				"defaults": {
+					"dark": "#9A9A9A",
+					"light": "#6E6E6E",
+					"highContrast": "#C0C0C0",
+					"highContrastLight": "#4A4A4A"
+				}
+			}
+		],
 		"keybindings": [
 			{
 				"command": "editor.action.revealDefinition",

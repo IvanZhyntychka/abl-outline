@@ -1,7 +1,8 @@
 'use strict';
 
 const vscode = require('vscode');
-const { parse, maskLines } = require('./parser');
+const { parse, maskLines, sortOutline } = require('./parser');
+const { registerOutline } = require('./outlineView');
 const { emptyNames, listIncludes, mergeNames, structuralNames, tokenSpans } = require('./highlight');
 const { classHeaderInfo, cursorSymbol, findMembers, findSourceFiles, landingPosition, resolveCursor, safeRelativePath, sourceScore, targetAt } = require('./navigate');
 
@@ -36,10 +37,11 @@ const MAX_SCAN_FILES = 400;
 
 function activate(context) {
   const selector = { language: 'abl' };
+  registerOutline(context);
   context.subscriptions.push(
     vscode.languages.registerDocumentSymbolProvider(selector, {
       provideDocumentSymbols(document) {
-        return parse(document.getText()).map(node => toSymbol(document, node));
+        return sortOutline(parse(document.getText())).map(node => toSymbol(document, node));
       }
     }),
     vscode.languages.registerDefinitionProvider(selector, {

@@ -6,6 +6,8 @@ A local Cursor and VS Code extension for OpenEdge ABL. It highlights `.cls`, `.p
 
 **Outline** (`Ctrl+Shift+O`) lists classes, interfaces, enums, methods, constructors, destructors, properties, procedures, functions, temp-tables, datasets, fields, indexes, and includes.
 
+**ABL Outline** in the Explorer shows that list for the selected file and keeps it when the editor is not focused. Siblings are sorted by name. Temp-tables and datasets use small table icons. A private method uses a dimmer method icon.
+
 **Highlighting** colors the file directly. On a dark theme keywords are orange, strings are green, numbers are blue, line comments are gray, and block comments are green. Classes are bold, methods are gold, fields and properties are purple, temp-tables are blue, and datasets are olive. On a light theme keywords are navy, strings are green, numbers are blue, comments are gray, and fields are purple. Names brought in by included files are colored too.
 
 **Go to Definition** (`F12`, `Ctrl+click`, `Ctrl+Shift+R`, or `Alt+F12` to peek) works for:

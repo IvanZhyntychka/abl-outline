@@ -429,4 +429,16 @@ function namePos(rawLine, name) {
   return { start: idx, end: idx + String(name).length };
 }
 
-module.exports = { parse, maskLines };
+function sortOutline(nodes) {
+  return (nodes || []).map(node => Object.assign({}, node, {
+    children: sortOutline(node.children)
+  })).sort(compareOutline);
+}
+
+function compareOutline(a, b) {
+  const byName = String(a.name).localeCompare(String(b.name), 'en', { sensitivity: 'base', numeric: true });
+  if (byName) return byName;
+  return (a.line - b.line) || ((a.nameStart || 0) - (b.nameStart || 0));
+}
+
+module.exports = { parse, maskLines, sortOutline };
