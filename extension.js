@@ -38,6 +38,18 @@ const MAX_SCAN_FILES = 400;
 function activate(context) {
   const selector = { language: 'abl' };
   registerOutline(context);
+  const sortTimer = { id: null };
+  const sortByName = () => {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor || editor.document.languageId !== 'abl') return;
+    vscode.commands.executeCommand('outline.sortByName');
+  };
+  context.subscriptions.push(
+    vscode.window.onDidChangeActiveTextEditor(sortByName),
+    { dispose() { clearTimeout(sortTimer.id); } }
+  );
+  sortByName();
+  sortTimer.id = setTimeout(sortByName, 600);
   context.subscriptions.push(
     vscode.languages.registerDocumentSymbolProvider(selector, {
       provideDocumentSymbols(document) {
@@ -147,6 +159,15 @@ async function namesForInclude(includePath, key) {
   return names;
 }
 
+function kindFor(node) {
+  if (node.kind === 'method' && /(?:^|\s)private(?:\s|$)/i.test(node.detail || '')) {
+    return vscode.SymbolKind.Constant;
+  }
+  if (node.kind === 'dataset') return vscode.SymbolKind.Object;
+  if (node.kind === 'temptable') return vscode.SymbolKind.Struct;
+  return KINDS[node.kind] || vscode.SymbolKind.Method;
+}
+
 function toSymbol(document, node) {
   const start = node.line;
   const end = Math.min(document.lineCount - 1, Math.max(node.endLine, start));
@@ -155,7 +176,7 @@ function toSymbol(document, node) {
   const symbol = new vscode.DocumentSymbol(
     node.name,
     node.detail || '',
-    KINDS[node.kind] || vscode.SymbolKind.Method,
+    kindFor(node),
     new vscode.Range(start, 0, end, endChar),
     new vscode.Range(start, node.nameStart, start, nameEnd)
   );

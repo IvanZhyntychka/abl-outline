@@ -182,6 +182,10 @@ function registerOutline(context) {
   );
   vscode.commands.executeCommand('setContext', 'ablOutline.hasDocument', false);
   sync();
+  if (!context.globalState.get('ablOutline.shown')) {
+    context.globalState.update('ablOutline.shown', true);
+    setTimeout(() => vscode.commands.executeCommand('abl.outline.focus'), 700);
+  }
 }
 
 async function selectedDocument(provider) {

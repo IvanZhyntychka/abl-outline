@@ -27,27 +27,27 @@ The extension looks in the open workspace first. If the file is not there, it se
 
 ## Install in VS Code
 
-The package is `vsix/abl-outline-1.0.0.vsix`.
+The package is `vsix/abl-outline-1.1.0.vsix`.
 
 1. Open the Extensions view with `Ctrl+Shift+X`.
 2. Open the `...` menu at the top of that view and choose **Install from VSIX...**.
-3. Select `vsix/abl-outline-1.0.0.vsix`.
+3. Select `vsix/abl-outline-1.1.0.vsix`.
 4. Run **Developer: Reload Window**.
 
 From a terminal, in the repository folder:
 
 ```powershell
-code --install-extension .\vsix\abl-outline-1.0.0.vsix
+code --install-extension .\vsix\abl-outline-1.1.0.vsix
 ```
 
 In Cursor, use the same VSIX command with `cursor` instead of `code`:
 
 ```powershell
-cursor --install-extension .\vsix\abl-outline-1.0.0.vsix
+cursor --install-extension .\vsix\abl-outline-1.1.0.vsix
 ```
 
 After changing the extension source, pack it again and reinstall:
 
 ```powershell
-npx @vscode/vsce package --allow-missing-repository --skip-license -o vsix/abl-outline-1.0.0.vsix
+npx @vscode/vsce package --allow-missing-repository --skip-license -o vsix/abl-outline-1.1.0.vsix
 ```

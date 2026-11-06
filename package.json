@@ -2,7 +2,7 @@
 	"name": "abl-outline",
 	"displayName": "ABL Outline",
 	"description": "Outline, highlighting, and go-to-definition for OpenEdge ABL includes and classes.",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"publisher": "local",
 	"engines": {
 		"vscode": "^1.70.0"
